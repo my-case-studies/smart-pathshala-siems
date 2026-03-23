@@ -1,1 +1,624 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Paathshala | Technical Leadership Case Study</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+
+    :root {
+      --bg: #070b16;
+      --text: #eef3ff;
+      --muted: #b9c6de;
+      --line: #2c3a55;
+      --card: #121b31;
+      --accent: #00d4ff;
+      --accent-2: #ff6aa9;
+      --deep: #eef3ff;
+      --max: 1200px;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow: 0 24px 54px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 2%, rgba(0, 212, 255, 0.36) 0, rgba(0, 212, 255, 0) 34%),
+        radial-gradient(circle at 88% 8%, rgba(255, 106, 169, 0.28) 0, rgba(255, 106, 169, 0) 36%),
+        radial-gradient(circle at 72% 92%, rgba(91, 255, 193, 0.2) 0, rgba(91, 255, 193, 0) 34%),
+        linear-gradient(180deg, #070b16 0%, #0b1426 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.64;
+      letter-spacing: 0.005em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(231, 236, 245, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(231, 236, 245, 0.05) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: radial-gradient(circle at center, black 28%, transparent 92%);
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 2.2rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 5rem 0 3.1rem;
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1px solid #48618a;
+      border-radius: 999px;
+      padding: 0.48rem 0.95rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #ddedff;
+      background: linear-gradient(120deg, rgba(0, 212, 255, 0.18), rgba(255, 106, 169, 0.16));
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.15rem, 4.5vw, 4rem);
+      line-height: 1.08;
+      max-width: 21ch;
+      color: #f2f6ff;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      text-shadow: 0 8px 28px rgba(0, 0, 0, 0.38);
+    }
+
+    .hero-copy {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.2rem;
+      align-items: end;
+    }
+
+    .lead {
+      max-width: none;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.12vw, 1.1rem);
+    }
+
+    .lead strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.28fr 0.72fr;
+      gap: 1rem;
+      margin-top: 1.35rem;
+      align-items: stretch;
+    }
+
+    .feature-panel,
+    .quick-facts,
+    .card,
+    .pillars,
+    .hire,
+    .big-quote,
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .feature-panel,
+    .quick-facts,
+    .card,
+    .pillars,
+    .hire,
+    .big-quote {
+      padding: 1.1rem;
+    }
+
+    .feature-panel {
+      border-top: 4px solid var(--accent);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(0, 212, 255, 0.24), transparent 36%),
+        linear-gradient(180deg, #121c32 0%, #182845 100%);
+    }
+
+    .quick-facts {
+      border-top: 4px solid var(--accent-2);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(255, 106, 169, 0.24), transparent 40%),
+        linear-gradient(180deg, #171c38 0%, #1f2447 100%);
+    }
+
+    .feature-panel h3,
+    .quick-facts h3,
+    .card h3,
+    .hire h3 {
+      margin: 0 0 0.55rem;
+      color: #f2f6ff;
+      font-size: 1.04rem;
+    }
+
+    .feature-panel p,
+    .quick-facts p,
+    .quick-facts li,
+    .card p,
+    .card li,
+    .intro,
+    .stat span {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .quick-facts li,
+    .card li {
+      color: #c1d0ea;
+    }
+
+    .feature-panel p,
+    .card p,
+    .intro,
+    .stat span {
+      color: #b8c7e2;
+    }
+
+    .feature-panel p + p {
+      margin-top: 0.45rem;
+    }
+
+    .quick-facts ul {
+      margin: 0.36rem 0 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.34rem;
+    }
+
+    .stats-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #141d33 0%, #1b2a47 100%);
+      border-top: 3px solid #3a4e71;
+    }
+
+    .stat:nth-child(1) {
+      border-top-color: #00d4ff;
+    }
+
+    .stat:nth-child(2) {
+      border-top-color: #5a8dff;
+    }
+
+    .stat:nth-child(3) {
+      border-top-color: #ffb347;
+    }
+
+    .stat:nth-child(4) {
+      border-top-color: #ff6aa9;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.2rem, 2.1vw, 1.65rem);
+      color: #f2f6ff;
+      margin-bottom: 0.22rem;
+      line-height: 1.26;
+    }
+
+    main {
+      padding-bottom: 3.3rem;
+    }
+
+    section {
+      margin-top: 1.35rem;
+    }
+
+    h2 {
+      margin: 0 0 0.62rem;
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+      color: #f4f8ff;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .intro {
+      max-width: 80ch;
+      margin: 0 0 0.92rem;
+    }
+
+    .cards-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.92rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.92rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      background:
+        radial-gradient(circle at 90% 0%, rgba(0, 212, 255, 0.12), transparent 32%),
+        linear-gradient(180deg, #121b31 0%, #182743 100%);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #5b7fb3;
+      box-shadow: 0 28px 56px rgba(0, 0, 0, 0.48);
+    }
+
+    .card ul {
+      margin: 0.42rem 0 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .big-quote {
+      border-left: 4px solid var(--accent-2);
+      color: #ffd4e8;
+      font-weight: 600;
+      background: linear-gradient(160deg, #2a1e3b 0%, #1f2b4a 100%);
+    }
+
+    .pillar {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0.9rem;
+      border-top: 1px solid #2b3b55;
+      padding: 0.88rem 0;
+    }
+
+    .pillar:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .pillar strong {
+      color: #dbe6fa;
+      font-size: 0.95rem;
+    }
+
+    .pillars {
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 5% 5%, rgba(0, 212, 255, 0.18), transparent 30%),
+        linear-gradient(160deg, rgba(90, 141, 255, 0.2), rgba(90, 141, 255, 0.05)),
+        #121b31;
+    }
+
+    .hire {
+      margin-top: 1.12rem;
+      border-color: #4f74aa;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(130deg, #163066 0%, #2b3f86 45%, #ff6aa9 100%);
+      color: #e9f4ff;
+    }
+
+    .hire h3 {
+      color: #ffffff;
+      font-size: 1.18rem;
+    }
+
+    .hire p {
+      margin: 0;
+      color: #deebff;
+      font-size: 0.95rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.84rem;
+    }
+
+    .tag {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 0.34rem 0.68rem;
+      font-size: 0.8rem;
+      color: #f4f8ff;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-copy,
+      .hero-layout,
+      .cards-2,
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pillar {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        width: min(var(--max), calc(100% - 1.2rem));
+      }
+
+      .hero {
+        padding-top: 3.8rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-panel,
+      .quick-facts,
+      .card,
+      .pillars,
+      .hire,
+      .big-quote,
+      .stat {
+        border-radius: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .feature-panel,
+      .quick-facts,
+      .card,
+      .pillars,
+      .stat,
+      .hire,
+      .big-quote {
+        animation: liftIn 380ms ease both;
+      }
+
+      @keyframes liftIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Technical Lead | System Architecture | Scaling & Operations</span>
+      <div class="hero-copy">
+        <h1>Engineering Leadership: Scaling Smart Paathshala to 65K+ Users</h1>
+        <p class="lead">
+          Smart Paathshala is a <strong>full education management system</strong>, from attendance, class operations, and exams to billing and payment confirmation.
+          I led the platform as technical lead across architecture, backend optimization, frontend and React Native review, and production operations.
+          The system is designed to be <strong>fully customizable and compatible for any school or college</strong> with tenant-aware workflows.
+        </p>
+      </div>
+
+      <div class="hero-layout">
+        <div class="feature-panel">
+          <h3>Payment Flow Complexity I Led</h3>
+          <p>
+            Bill payments are not processed in our UI. Payment execution happens inside the respective provider apps: bKash, Rocket, Nagad, and Tap.
+          </p>
+          <p>
+            Our backend infrastructure handles end-to-end orchestration: request validation, transaction pipeline handling, settlement-state processing,
+            and confirmation lifecycle back into institutional billing flows.
+          </p>
+          <p>
+            This design is significantly more complex than normal payment gateway integration because it requires resilient multi-rail state management,
+            strict reconciliation behavior, and high-trust operational consistency.
+          </p>
+        </div>
+        <div class="quick-facts">
+          <h3>Production Snapshot</h3>
+          <ul>
+            <li>65K+ students</li>
+            <li>100+ institutes</li>
+            <li>Single VPS deployment with robust clusterization strategy</li>
+            <li>Tenant-aware architecture for school and college compatibility</li>
+            <li>AWS S3 secured storage with pre-signed URL access for images and sensitive files</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <strong>59</strong>
+          <span>Domain route groups in centralized API composition</span>
+        </div>
+        <div class="stat">
+          <strong>132 / 135 / 135</strong>
+          <span>Routers, services, and controllers in the backend codebase</span>
+        </div>
+        <div class="stat">
+          <strong>116 + 113 + 119</strong>
+          <span>Models, validation schemas, and DTOs for strict data contracts</span>
+        </div>
+        <div class="stat">
+          <strong>Mongo + Redis + PM2 + Grafana</strong>
+          <span>Scalable runtime stack with observability and operational controls</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section>
+        <h2>Why This Platform Is Huge</h2>
+        <p class="intro">
+          This is not a simple school ERP. It is a broad, production-grade education operating system handling mission-critical workflows across academics,
+          operations, communication, finance, and compliance-sensitive payment confirmation across multiple providers.
+        </p>
+        <div class="big-quote">
+          The system had to support scale, correctness, and flexibility at once: multi-institute onboarding, cross-role access control,
+          complex exam and attendance logic, and payment confirmation reliability under real-world operational pressure.
+        </div>
+      </section>
+
+      <section>
+        <h2>Full Education Management Coverage</h2>
+        <p class="intro">
+          I led platform design to ensure every key institution workflow was included in one extensible backend.
+        </p>
+        <div class="cards-3">
+          <article class="card">
+            <h3>Academic Operations</h3>
+            <ul>
+              <li>Attendance and class routine management</li>
+              <li>Sections, periods, subject enrollment, and academic setup</li>
+              <li>Homework, assignments, submissions, and quick tests</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Exam and Result Engine</h3>
+            <ul>
+              <li>Exam configuration, grade logic, and result processing</li>
+              <li>Tabulation configuration and final tabulation outputs</li>
+              <li>Institution-level result lifecycle and reporting workflows</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Finance and Payment Workflow</h3>
+            <ul>
+              <li>Billing heads, invoice lifecycle, expense and category tracking</li>
+              <li>bKash, Rocket, Nagad, and Tap confirmation-linked processing</li>
+              <li>Financial statistics and operational visibility modules</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>How I Designed for Scalability and Backend Optimization</h2>
+        <p class="intro">
+          I optimized backend development for performance, stability, and maintainability, not only feature speed.
+          Every architecture decision was tied to scaling behavior and production reliability.
+        </p>
+
+        <div class="pillars">
+          <div class="pillar">
+            <strong>Multi-Tenant Data Model</strong>
+            <span>Primary and secondary MongoDB strategy with dynamic institute DB access and model caching to isolate tenant load and reduce repeated setup overhead.</span>
+          </div>
+          <div class="pillar">
+            <strong>Connection and Workload Control</strong>
+            <span>Pool tuning separates control-plane metadata behavior from institute transaction load, reducing contention and improving throughput predictability.</span>
+          </div>
+          <div class="pillar">
+            <strong>Redis Caching and Safe Invalidation</strong>
+            <span>TTL-driven caching, hit/miss metrics, and SCAN-based invalidation were implemented for production-safe cache operations at larger keyspace volume.</span>
+          </div>
+          <div class="pillar">
+            <strong>Security and Data Protection</strong>
+            <span>JWT auth, role-aware access, sanitization, rate limiting, secured S3 object handling with pre-signed URLs, and strict request validation patterns.</span>
+          </div>
+          <div class="pillar">
+            <strong>Operational Resilience</strong>
+            <span>Single VPS with robust clusterization via PM2, dependency-first startup, graceful shutdown ordering, and memory restart boundaries for long-running stability.</span>
+          </div>
+          <div class="pillar">
+            <strong>Observability-Driven Optimization</strong>
+            <span>Prometheus metrics, Loki/Promtail logging, Grafana dashboards, health diagnostics, and cache metrics were integrated for measurable runtime tuning.</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>My Technical Leadership Impact</h2>
+        <p class="intro">
+          I was accountable for outcomes across architecture, engineering execution, and operations. I did not operate in one layer only.
+        </p>
+        <div class="cards-2">
+          <article class="card">
+            <h3>Leadership Scope</h3>
+            <ul>
+              <li>Owned system design, service boundaries, and scaling roadmap</li>
+              <li>Reviewed frontend and React Native code for contract and behavior consistency</li>
+              <li>Drove code quality, delivery sequencing, and architectural governance</li>
+              <li>Aligned backend with real institutional workflows, not abstract API design</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Execution Ownership</h3>
+            <ul>
+              <li>Handled deployment and continuous server maintenance in production</li>
+              <li>Integrated monitoring stack and incident-debug readiness</li>
+              <li>Optimized backend flows for scale while preserving correctness</li>
+              <li>Maintained delivery speed without sacrificing long-term maintainability</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="hire">
+          <h3>Why This Makes Me a Strong Hire</h3>
+          <p>
+            This project proves I can lead complex backend architecture under real constraints, optimize systems for scale,
+            and deliver business-critical reliability from design to production. I bring technical depth, execution rigor,
+            and cross-team leadership needed for high-impact engineering roles.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Tech Lead</span>
+            <span class="tag">Scalable System Design</span>
+            <span class="tag">Dedicated Backend Engineer</span>
+            <span class="tag">Frontend Expertise</span>
+            <span class="tag">App Expertise</span>
+            <span class="tag">Payment Orchestration</span>
+            <span class="tag">Production Operations</span>
+            <span class="tag">School + College Compatibility</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
